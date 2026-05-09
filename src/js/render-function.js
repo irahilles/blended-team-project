@@ -1,7 +1,7 @@
 import { refs } from './refs';
 
-export function createProductsMarkup(products) {
-  return products
+export function renderProducts(products) {
+  const markup = products
     .map(
       ({ id, thumbnail, title, brand, category, price }) => `
         <li class="products__item" data-id="${id}">
@@ -16,8 +16,8 @@ export function createProductsMarkup(products) {
       `
     )
     .join('');
+refs.productList.insertAdjacentHTML('beforeend', markup);
 }
-
 
 export function renderCategories(categories) {
   const allCategories = ['all', ...categories];

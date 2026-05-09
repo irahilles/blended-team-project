@@ -1,18 +1,25 @@
-const modal = document.querySelector('.modal');
-const closeBtn = document.querySelector('.modal__close-btn');
+import { refs } from "./refs";
 
-closeBtn.addEventListener('click', closeModal);
-modal.addEventListener('click', function (e) {
-  if (e.target === modal) closeModal();
-});
-document.addEventListener('keydown', function (e) {
-  if (e.key === 'Escape') closeModal();
-});
-
-function openModal() {
-  modal.classList.add('modal--is-open');
+export function openModal() {
+  refs.modal.classList.add('modal--is-open');
+  document.body.style.overflow = 'hidden';
+  document.addEventListener('keydown', onEscapePress);
+  refs.modal.addEventListener('click', onBackdropClick);
 }
 
-function closeModal() {
-  modal.classList.remove('modal--is-open');
+export function closeModal() {
+  refs.modal.classList.remove('modal--is-open');
+  document.body.style.overflow = '';
+  document.removeEventListener('keydown', onEscapePress);
+  refs.modal.removeEventListener('click', onBackdropClick);
 }
+
+
+function onEscapePress(e){
+if (e.key === 'Escape') closeModal();
+}
+
+function onBackdropClick(e){
+if (e.target === refs.modal) closeModal();
+}
+
