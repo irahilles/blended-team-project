@@ -27,15 +27,19 @@ export async function handleCategoryClick(event) {
   activeButton.classList.toggle('categories__btn--active', false);
   button.classList.toggle('categories__btn--active', true);
 
-  const products =
-    category === 'all'
-      ? await getProducts()
-      : await getProductsByCategory(category);
+  try {
+    const products =
+      category === 'all'
+        ? await getProducts()
+        : await getProductsByCategory(category);
 
-  const noProductsFound = products.length === 0;
+    const noProductsFound = products.length === 0;
 
-  refs.notFound.classList.toggle('not-found--visible', noProductsFound);
-  if (noProductsFound) return;
+    refs.notFound.classList.toggle('not-found--visible', noProductsFound);
+    if (noProductsFound) return;
 
-  // renderProducts(products)
+    // renderProducts(products)
+  } catch (err) {
+    console.error(err);
+  }
 }
