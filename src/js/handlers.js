@@ -1,6 +1,9 @@
-import { getCategories, getProducts } from './products-api';
 import { renderCategories, renderProducts } from './render-function';
-import { getProducts, getProductsByCategory } from './products-api';
+import {
+  getCategories,
+  getProducts,
+  getProductsByCategory,
+} from './products-api';
 import { refs } from './refs';
 
 let currentPage = 1;
@@ -38,7 +41,7 @@ export async function handleCategoryClick(event) {
     refs.notFound.classList.toggle('not-found--visible', noProductsFound);
     if (noProductsFound) return;
 
-    // renderProducts(products)
+    renderProducts(products);
   } catch (err) {
     console.error(err);
   }
