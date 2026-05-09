@@ -16,7 +16,19 @@ export function renderProducts(products) {
       `
     )
     .join('');
-refs.productList.insertAdjacentHTML('beforeend', markup);
+  refs.productList.insertAdjacentHTML('beforeend', markup);
+}
+
+export function clearProducts() {
+  refs.productList.innerHTML = '';
+}
+
+export function showNotFound() {
+  refs.notFound.classList.add('not-found--visible');
+}
+
+export function hideNotFound() {
+  refs.notFound.classList.remove('not-found--visible');
 }
 
 export function renderCategories(categories) {
@@ -29,4 +41,3 @@ export function renderCategories(categories) {
     .join('');
   refs.categoryList.innerHTML = markup;
 }
-
