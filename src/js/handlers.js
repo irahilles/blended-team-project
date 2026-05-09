@@ -1,13 +1,26 @@
 import { refs } from './refs';
 
-export function handleCategoryClick(event) {
-  const category = event.target.textContent;
-  if (!category) return;
-
+export async function handleCategoryClick(event) {
   const button = event.target;
+  const category = button.textContent;
+  if (!category) return;
+  if (!(button instanceof HTMLButtonElement)) return;
+
   const activeButton = refs.categoryList.querySelector(
     '.categories__btn--active'
   );
   activeButton.classList.toggle('categories__btn--active', false);
   button.classList.toggle('categories__btn--active', true);
+
+  // const products =
+  //   category === 'all'
+  //     ? await getProducts()
+  //     : await getProductsByCategory(category);
+
+  const products = [];
+  const noProductsFound = products.length === 0;
+  console.log(products);
+
+  refs.notFound.classList.toggle('not-found--visible', noProductsFound);
+  if (noProductsFound) return;
 }
