@@ -1,4 +1,10 @@
-import { renderCategories, renderProducts } from './render-function';
+import {
+  clearProducts,
+  hideNotFound,
+  renderCategories,
+  renderProducts,
+  showNotFound,
+} from './render-function';
 import {
   getCategories,
   getProducts,
@@ -36,12 +42,13 @@ export async function handleCategoryClick(event) {
         ? await getProducts()
         : await getProductsByCategory(category);
 
-    const noProductsFound = products.length === 0;
-
-    refs.notFound.classList.toggle('not-found--visible', noProductsFound);
-    if (noProductsFound) return;
-
-    renderProducts(products);
+    clearProducts();
+    if (products.length === 0) {
+      showNotFound();
+    } else {
+      hideNotFound();
+      renderProducts(products);
+    }
   } catch (err) {
     console.error(err);
   }
