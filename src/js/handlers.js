@@ -14,7 +14,7 @@ export async function handleCategoryClick(event) {
   button.classList.toggle('categories__btn--active', true);
 
   try {
-    const products =
+    const { products } =
       category === 'all'
         ? await getProducts()
         : await getProductsByCategory(category);
