@@ -1,15 +1,15 @@
 import { categoryList } from './refs';
 
-function renderCategoryButton(category) {
-  return `
+export function renderCategories(categories) {
+  const allCategories = ['all', ...categories];
+  const markup = allCategories
+    .map(category =>
+      `
   <li class="categories__item">
    <button class="categories__btn" type="button">${category}</button>
   </li>
-  `.trim();
-}
-
-export function renderCategories(categories) {
-  categories = ['all', ...categories];
-  const markup = categories.map(renderCategoryButton).join('');
+  `.trim()
+    )
+    .join('');
   categoryList.innerHTML = markup;
 }
