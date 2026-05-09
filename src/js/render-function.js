@@ -1,4 +1,4 @@
-import { categoryList } from './refs';
+import { refs } from './refs';
 
 export function renderCategories(categories) {
   const allCategories = ['all', ...categories];
@@ -11,5 +11,5 @@ export function renderCategories(categories) {
   `.trim()
     )
     .join('');
-  categoryList.innerHTML = markup;
+  refs.categoryList.innerHTML = markup;
 }
