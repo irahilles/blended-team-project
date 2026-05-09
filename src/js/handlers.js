@@ -1,3 +1,4 @@
+import { getProducts, getProductsByCategory } from './products-api';
 import { refs } from './refs';
 
 export async function handleCategoryClick(event) {
@@ -12,15 +13,15 @@ export async function handleCategoryClick(event) {
   activeButton.classList.toggle('categories__btn--active', false);
   button.classList.toggle('categories__btn--active', true);
 
-  // const products =
-  //   category === 'all'
-  //     ? await getProducts()
-  //     : await getProductsByCategory(category);
+  const products =
+    category === 'all'
+      ? await getProducts()
+      : await getProductsByCategory(category);
 
-  const products = [];
   const noProductsFound = products.length === 0;
-  console.log(products);
 
   refs.notFound.classList.toggle('not-found--visible', noProductsFound);
   if (noProductsFound) return;
+
+  // renderProducts(products)
 }
